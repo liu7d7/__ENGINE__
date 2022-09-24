@@ -12,15 +12,15 @@ namespace __ENGINE__.Game.Components
         private readonly List<VertexData[]> _faces = new();
         private readonly List<VertexData[]> _lines = new();
 
-        public class Component : EngineObj.Component
+        public class Component : __ENGINE__Obj.Component
         {
             private readonly Model3d _model;
             private readonly Func _before = empty;
             private readonly Func _after = empty;
 
-            public delegate void Func(EngineObj objIn);
+            public delegate void Func(__ENGINE__Obj objIn);
 
-            private static void empty(EngineObj obj)
+            private static void empty(__ENGINE__Obj obj)
             {
             }
 
@@ -36,12 +36,12 @@ namespace __ENGINE__.Game.Components
                 _model = model;
             }
 
-            public override void render(EngineObj objIn)
+            public override void render(__ENGINE__Obj objIn)
             {
                 base.render(objIn);
 
                 _before(objIn);
-                _model.render(objIn.get<FloatPos>().toVec3());
+                _model.render(objIn.get<FloatPos>().to_vec3());
                 _after(objIn);
             }
         }
@@ -146,7 +146,7 @@ namespace __ENGINE__.Game.Components
                     }
                 }
             }
-            components[path + colors.contentToString()] = this;
+            components[path + colors.content_to_string()] = this;
         }
 
         private static void calculateNormals(VertexData[] face)
@@ -175,7 +175,7 @@ namespace __ENGINE__.Game.Components
 
         public static Model3d read(string path, Dictionary<string, uint> colors)
         {
-            return components.ContainsKey(path + colors.contentToString()) ? components[path + colors.contentToString()] : new(path, colors);
+            return components.ContainsKey(path + colors.content_to_string()) ? components[path + colors.content_to_string()] : new(path, colors);
         }
     }
 }

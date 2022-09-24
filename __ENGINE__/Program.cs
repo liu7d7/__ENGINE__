@@ -33,9 +33,11 @@ namespace __ENGINE__
                     !fileName.EndsWith("csproj") && 
                     !fileName.EndsWith("bat") && 
                     !fileName.EndsWith("sln") && 
+                    !fileName.EndsWith("txt") && 
                     !fileName.EndsWith("user")) continue;
                 string fileContent = File.ReadAllText(fileName);
                 fileContent = fileContent.Replace("__ENGINE__Main", "Main");
+                fileContent = fileContent.Replace("__ENGINE__Program", "Program");
                 fileContent = fileContent.Replace(engine, _projectName);
                 File.WriteAllText(fileName, fileContent);
                 Console.WriteLine($"Replaced __ENGINE__ with {_projectName} in {fileName}");

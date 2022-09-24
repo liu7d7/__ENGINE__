@@ -1,2 +1,2 @@
-xcopy "C:\Users\richard may clarkson\RiderProjects\iready-3d\Iready\Resource" "C:\Users\richard may clarkson\RiderProjects\iready-3d\Iready\bin\Debug\net6.0\Resource" /E /H /C /R /Q /Y
-xcopy "C:\Users\richard may clarkson\RiderProjects\iready-3d\Iready\Resource" "C:\Users\richard may clarkson\RiderProjects\iready-3d\Iready\bin\Release\net6.0\Resource" /E /H /C /R /Q /Y
+xcopy "C:\Users\richard may clarkson\RiderProjects\__ENGINE__\__ENGINE__\Resource" "C:\Users\richard may clarkson\RiderProjects\__ENGINE__\__ENGINE__\bin\Debug\net6.0\Resource" /E /H /C /R /Q /Y
+xcopy "C:\Users\richard may clarkson\RiderProjects\__ENGINE__\__ENGINE__\Resource" "C:\Users\richard may clarkson\RiderProjects\__ENGINE__\__ENGINE__\bin\Release\net6.0\Resource" /E /H /C /R /Q /Y

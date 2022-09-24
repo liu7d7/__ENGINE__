@@ -98,13 +98,13 @@ namespace __ENGINE__.Engine
             }
         }
 
-        public void bindColor(TextureUnit unit)
+        public void bind_color(TextureUnit unit)
         {
             GL.ActiveTexture(unit);
             GL.BindTexture(TextureTarget.Texture2D, _colorAttachment);
         }
         
-        public int bindDepth(TextureUnit unit)
+        public int bind_depth(TextureUnit unit)
         {
             if (!_useDepth)
             {

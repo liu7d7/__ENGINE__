@@ -5,13 +5,7 @@ using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
 using __ENGINE__.Engine;
 using __ENGINE__.Shared;
-using __ENGINE__.Shared.Components;
-using __ENGINE__.Shared.Tweens;
-using NAudio.Vorbis;
-using NAudio.Wave;
 using OpenTK.Mathematics;
-using OpenTK.Windowing.GraphicsLibraryFramework;
-using Font = __ENGINE__.Engine.Font;
 
 namespace __ENGINE__
 {
@@ -31,8 +25,7 @@ namespace __ENGINE__
 
             GL.ClearColor(0f, 0f, 0f, 0f);
             GL.DepthFunc(DepthFunction.Lequal);
-            GL.Enable(EnableCap.Blend);
-            GL.BlendFunc(BlendingFactor.SrcAlpha, BlendingFactor.OneMinusSrcAlpha);
+            GlStateManager.enable_blend();
 
             Ticker.init();
         }
@@ -44,7 +37,7 @@ namespace __ENGINE__
             if (e.Size == Vector2i.Zero)
                 return;
 
-            RenderSystem.updateProjection();
+            RenderSystem.update_projection();
             GL.Viewport(new Rectangle(0, 0, Size.X, Size.Y));
             Fbo.resize(Size.X, Size.Y);
         }
@@ -70,11 +63,6 @@ namespace __ENGINE__
             {
                 _ticks++;
             }
-        }
-
-        protected override void OnKeyDown(KeyboardKeyEventArgs e)
-        {
-            base.OnKeyDown(e);
         }
     }
 }

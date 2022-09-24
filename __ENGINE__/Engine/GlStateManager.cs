@@ -12,44 +12,44 @@ namespace __ENGINE__.Engine
         private static bool _blendSaved;
         private static bool _cullSaved;
 
-        public static void saveState()
+        public static void save_state()
         {
             _depthSaved = _depthEnabled;
             _blendSaved = _blendEnabled;
             _cullSaved = _cullEnabled;
         }
         
-        public static void restoreState()
+        public static void restore_state()
         {
             if (_depthSaved)
-                enableDepth();
+                enable_depth();
             else
-                disableDepth();
+                disable_depth();
             if (_blendSaved)
-                enableBlend();
+                enable_blend();
             else
-                disableBlend();
+                disable_blend();
             if (_cullSaved)
-                enableCull();
+                enable_cull();
             else
-                disableCull();
+                disable_cull();
         }
         
-        public static void enableDepth()
+        public static void enable_depth()
         {
             if (_depthEnabled) return;
             _depthEnabled = true;
             GL.Enable(EnableCap.DepthTest);
         }
         
-        public static void disableDepth()
+        public static void disable_depth()
         {
             if (!_depthEnabled) return;
             _depthEnabled = false;
             GL.Disable(EnableCap.DepthTest);
         }
         
-        public static void enableBlend()
+        public static void enable_blend()
         {
             if (_blendEnabled) return;
             _blendEnabled = true;
@@ -57,7 +57,7 @@ namespace __ENGINE__.Engine
             GL.BlendFunc(BlendingFactor.SrcAlpha, BlendingFactor.OneMinusSrcAlpha);
         }
         
-        public static void disableBlend()
+        public static void disable_blend()
         {
             if (_blendEnabled)
             {
@@ -66,14 +66,14 @@ namespace __ENGINE__.Engine
             }
         }
         
-        public static void enableCull()
+        public static void enable_cull()
         {
             if (_cullEnabled) return;
             _cullEnabled = true;
             GL.Enable(EnableCap.CullFace);
         }
         
-        public static void disableCull()
+        public static void disable_cull()
         {
             if (!_cullEnabled) return;
             _cullEnabled = false;

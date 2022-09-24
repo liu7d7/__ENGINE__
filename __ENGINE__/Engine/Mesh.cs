@@ -164,26 +164,26 @@ namespace __ENGINE__.Engine
             }
 
             if (_index <= 0) return;
-            GlStateManager.saveState();
-            GlStateManager.enableBlend();
+            GlStateManager.save_state();
+            GlStateManager.enable_blend();
             if (RenderSystem.rendering3d)
             {
-                GlStateManager.enableDepth();
+                GlStateManager.enable_depth();
             }
             else
             {
-                GlStateManager.disableDepth();
+                GlStateManager.disable_depth();
             }
             _shader?.bind();
-            _shader?.setDefaults();
+            _shader?.set_defaults();
             _vao.bind();
             _ibo.bind();
             _vbo.bind();
-            GL.DrawElements(_drawMode.asGl(), _index, DrawElementsType.UnsignedInt, 0);
+            GL.DrawElements(_drawMode.as_gl(), _index, DrawElementsType.UnsignedInt, 0);
             Ibo.unbind();
             Vbo.unbind();
             Vao.unbind();
-            GlStateManager.restoreState();
+            GlStateManager.restore_state();
         }
 
         public sealed class DrawMode
@@ -213,7 +213,7 @@ namespace __ENGINE__.Engine
                 return _cid;
             }
 
-            public BeginMode asGl()
+            public BeginMode as_gl()
             {
                 return _cid switch
                 {

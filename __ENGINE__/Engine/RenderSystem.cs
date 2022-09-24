@@ -36,9 +36,6 @@ namespace __ENGINE__.Engine
             model = _model[_modelIdx];
         }
 
-        public static readonly Font font = new(File.ReadAllBytes("Resource/Font/m5x7.ttf"), 32);
-        public static readonly Texture tex0 = Texture.loadFromFile("Resource/Texture/Texture.png");
-        public static readonly Texture stars = Texture.loadFromFile("Resource/Texture/Stars.png");
         public static readonly Mesh mesh = new(Mesh.DrawMode.triangle, john, Vao.Attrib.float3, Vao.Attrib.float3, Vao.Attrib.float2, Vao.Attrib.float4);
         public static readonly Mesh line = new(Mesh.DrawMode.line, john, Vao.Attrib.float3, Vao.Attrib.float3, Vao.Attrib.float2, Vao.Attrib.float4);
         public static readonly Mesh post = new(Mesh.DrawMode.triangle, null, Vao.Attrib.float2);
@@ -48,23 +45,23 @@ namespace __ENGINE__.Engine
 
         public static Vector2i size => __ENGINE__.instance.Size;
 
-        public static void setDefaults(this Shader shader)
+        public static void set_defaults(this Shader shader)
         {
-            shader.setMatrix4("_proj", _projection);
-            shader.setMatrix4("_lookAt", _lookAt);
-            shader.setVector2("_screenSize", new(__ENGINE__.instance.Size.X, __ENGINE__.instance.Size.Y));
-            shader.setInt("_rendering3d", rendering3d ? 1 : 0);
-            shader.setInt("_renderingRed", renderingRed ? 1 : 0);
-            shader.setVector3("lightPos", new(_camera.x + 5, _camera.y + 12, _camera.z + 5));
+            shader.set_matrix4("_proj", _projection);
+            shader.set_matrix4("_lookAt", _lookAt);
+            shader.set_vector2("_screenSize", new(__ENGINE__.instance.Size.X, __ENGINE__.instance.Size.Y));
+            shader.set_int("_rendering3d", rendering3d ? 1 : 0);
+            shader.set_int("_renderingRed", renderingRed ? 1 : 0);
+            shader.set_vector3("lightPos", new(_camera.x + 5, _camera.y + 12, _camera.z + 5));
         }
 
-        public static void renderPixelation(float pixWidth, float pixHeight)
+        public static void render_pixelation(float pixWidth, float pixHeight)
         {
             pixel.bind();
-            frame.bindColor(TextureUnit.Texture0);
-            pixel.setInt("_tex0", 0);
-            pixel.setVector2("_screenSize", new Vector2(size.X, size.Y));
-            pixel.setVector2("_pixSize", new Vector2(pixWidth, pixHeight));
+            frame.bind_color(TextureUnit.Texture0);
+            pixel.set_int("_tex0", 0);
+            pixel.set_vector2("_screenSize", new Vector2(size.X, size.Y));
+            pixel.set_vector2("_pixSize", new Vector2(pixWidth, pixHeight));
             post.begin();
             int i1 = post.float2(0, 0).next();
             int i2 = post.float2(size.X, 0).next();
@@ -75,12 +72,12 @@ namespace __ENGINE__.Engine
             Shader.unbind();
         }
 
-        public static void updateProjection()
+        public static void update_projection()
         {
             Matrix4.CreateOrthographic(__ENGINE__.instance.Size.X, __ENGINE__.instance.Size.Y, -1000, 3000, out _projection);
         }
 
-        public static void updateLookAt(EngineObj cameraObj, bool rendering3d = true)
+        public static void update_look_at(__ENGINE__Obj cameraObj, bool rendering3d = true)
         {
             if (!cameraObj.has<FloatPos>())
             {
@@ -96,7 +93,7 @@ namespace __ENGINE__.Engine
             }
 
             Camera comp = cameraObj.get<Camera>();
-            _lookAt = comp.getCameraMatrix();
+            _lookAt = comp.get_camera_matrix();
         }
         
     }

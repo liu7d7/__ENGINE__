@@ -6,7 +6,7 @@ namespace __ENGINE__.Shared.Tweens
     {
         private readonly Animations.Animation _animation;
         public override float output() => MathHelper.Clamp(infinite ? _animation(duration, (Environment.TickCount - lastActivation) % duration) : _animation(duration, Environment.TickCount - lastActivation), 0, 1);
-        public override float outputAt(float time)
+        public override float output_at(float time)
         {
             if (time < lastActivation)
             {
@@ -30,6 +30,6 @@ namespace __ENGINE__.Shared.Tweens
         }
 
         public override bool done() => Environment.TickCount - lastActivation > duration;
-        public bool pastHalf => Environment.TickCount - lastActivation > duration / 2;
+        public bool past_half => Environment.TickCount - lastActivation > duration / 2;
     }
 }

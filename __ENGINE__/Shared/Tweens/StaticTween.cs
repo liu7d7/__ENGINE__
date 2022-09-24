@@ -15,7 +15,7 @@
             return _output;
         }
 
-        public override float outputAt(float time)
+        public override float output_at(float time)
         {
             return _output;
         }

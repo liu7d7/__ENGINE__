@@ -47,7 +47,7 @@ namespace __ENGINE__.Engine
             StbTrueType.stbtt_GetFontVMetrics(fontInfo, &asc, null, null);
             _ascent = asc * StbTrueType.stbtt_ScaleForPixelHeight(fontInfo, height);
             
-            texture = Texture.loadFromBuffer(bitmap, 2048, 2048, PixelFormat.Red, PixelInternalFormat.R8, TextureMinFilter.NearestMipmapNearest, TextureMagFilter.Nearest);
+            texture = Texture.load_from_buffer(bitmap, 2048, 2048, PixelFormat.Red, PixelInternalFormat.R8, TextureMinFilter.NearestMipmapNearest, TextureMagFilter.Nearest);
         }
 
         public void bind()
@@ -116,7 +116,7 @@ namespace __ENGINE__.Engine
             }
         }
         
-        public float getWidth(string text, float scale = 1.0f)
+        public float get_width(string text, float scale = 1.0f)
         {
             int length = text.Length;
             float width = 0;
@@ -139,7 +139,7 @@ namespace __ENGINE__.Engine
             return width;
         }
 
-        public float getHeight(float scale = 1.0f)
+        public float get_height(float scale = 1.0f)
         {
             return _ascent * scale;
         }

@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Drawing.Imaging;
 using OpenTK.Mathematics;
+using StbImageSharp;
 using PixelFormat = OpenTK.Graphics.OpenGL4.PixelFormat;
 
 namespace __ENGINE__.Engine
@@ -16,21 +17,17 @@ namespace __ENGINE__.Engine
         public readonly float width;
         public readonly float height;
 
-        public static Texture loadFromFile(string path)
+        public static Texture load_from_file(string path)
         {
             int handle = GL.GenTexture();
 
             GL.ActiveTexture(TextureUnit.Texture0);
             GL.BindTexture(TextureTarget.Texture2D, handle);
             
-#pragma warning disable CA1416
-            using Bitmap image = new Bitmap(path);
-            
-            BitmapData data = image.LockBits(
-                new Rectangle(0, 0, image.Width, image.Height),
-                ImageLockMode.ReadOnly,
-                System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-            
+            StbImage.stbi_set_flip_vertically_on_load(1);
+            using Stream stream = File.OpenRead(path);
+            ImageResult image = ImageResult.FromStream(stream, ColorComponents.RedGreenBlueAlpha);
+
             GL.TexImage2D(TextureTarget.Texture2D,
                 0,
                 PixelInternalFormat.Rgba,
@@ -39,7 +36,7 @@ namespace __ENGINE__.Engine
                 0,
                 PixelFormat.Bgra,
                 PixelType.UnsignedByte,
-                data.Scan0);
+                image.Data);
 
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.NearestMipmapNearest);
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Nearest);
@@ -50,10 +47,9 @@ namespace __ENGINE__.Engine
             GL.GenerateMipmap(GenerateMipmapTarget.Texture2D);
 
             return new Texture(handle, image.Width, image.Height);
-#pragma warning restore CA1416
         }
         
-        public static Texture loadFromBuffer(byte[] buffer, int width, int height, PixelFormat format, PixelInternalFormat internalFormat, TextureMinFilter minFilter = TextureMinFilter.LinearMipmapLinear, TextureMagFilter magFilter = TextureMagFilter.Linear)
+        public static Texture load_from_buffer(byte[] buffer, int width, int height, PixelFormat format, PixelInternalFormat internalFormat, TextureMinFilter minFilter = TextureMinFilter.LinearMipmapLinear, TextureMagFilter magFilter = TextureMagFilter.Linear)
         {
             int handle = GL.GenTexture();
 
@@ -108,7 +104,7 @@ namespace __ENGINE__.Engine
             _active = 0;
         }
 
-        public static Vector2 currentBounds()
+        public static Vector2 current_bounds()
         {
             if (!textures.ContainsKey(_active))
             {

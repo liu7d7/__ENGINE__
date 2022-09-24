@@ -2,7 +2,7 @@
 
 namespace __ENGINE__.Shared.Components
 {
-    public class FloatPos : EngineObj.Component
+    public class FloatPos : __ENGINE__Obj.Component
     {
         public float x;
         public float prevX;
@@ -14,26 +14,26 @@ namespace __ENGINE__.Shared.Components
         public float prevYaw;
         public float pitch;
         public float prevPitch;
-        public float lerpedX => Util.lerp(prevX, x, Ticker.tickDelta);
-        public float lerpedY => Util.lerp(prevY, y, Ticker.tickDelta);
-        public float lerpedZ => Util.lerp(prevZ, z, Ticker.tickDelta);
+        public float lerped_x => Util.lerp(prevX, x, Ticker.tickDelta);
+        public float lerped_y => Util.lerp(prevY, y, Ticker.tickDelta);
+        public float lerped_z => Util.lerp(prevZ, z, Ticker.tickDelta);
 
         public FloatPos()
         {
             x = prevX = y = prevY = z = prevZ = yaw = prevYaw = pitch = prevPitch = 0;
         }
 
-        public Vector3 toVec3()
+        public Vector3 to_vec3()
         {
             return new(x, y, z);
         }
 
-        public Vector3 toLerpedVec3(float xOff, float yOff, float zOff)
+        public Vector3 to_lerped_vec3(float xOff, float yOff, float zOff)
         {
-            return new(lerpedX + xOff, lerpedY + yOff, lerpedZ + zOff);
+            return new(lerped_x + xOff, lerped_y + yOff, lerped_z + zOff);
         }
 
-        public void setPrev()
+        public void set_prev()
         {
             prevX = x;
             prevY = y;

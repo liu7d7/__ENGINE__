@@ -29,7 +29,7 @@
             return _lastOut = _list[_idx].output();
         }
 
-        public override float outputAt(float time)
+        public override float output_at(float time)
         {
             float duration = 0f;
             float lastDuration = 0f;
@@ -45,7 +45,7 @@
             }
 
             i--;
-            return _list[i].outputAt(time - lastDuration - lastActivation);
+            return _list[i].output_at(time - lastDuration - lastActivation);
         }
 
         public override bool done()

@@ -13,7 +13,7 @@ namespace __ENGINE__.Shared
     
     public static class Extensions
     {
-        public static string contentToString<T>(this T[] arr)
+        public static string content_to_string<T>(this T[] arr)
         {
             string o = arr.ToString() ?? string.Empty;
             o = o[..^1];
@@ -26,7 +26,7 @@ namespace __ENGINE__.Shared
             return o;
         }
 
-        public static string contentToString<T, Tv>(this Dictionary<T, Tv> arr)
+        public static string content_to_string<T, Tv>(this Dictionary<T, Tv> arr)
         {
             StringBuilder o = new("Map<");
             o.Append(typeof(T));
@@ -61,7 +61,7 @@ namespace __ENGINE__.Shared
             vec.W = MathF.FusedMultiplyAdd(m4F.M14, f, MathF.FusedMultiplyAdd(m4F.M24, g, MathF.FusedMultiplyAdd(m4F.M34, h, m4F.M44 + i)));
         }
 
-        public static Vector2 normalizedFast(this ref Vector2 vec)
+        public static Vector2 normalized_fast(this ref Vector2 vec)
         {
             if (vec == Vector2.Zero)
             {
@@ -73,7 +73,7 @@ namespace __ENGINE__.Shared
             return vec;
         }
 
-        public static Vector3 normalizedFast(this ref Vector3 vec)
+        public static Vector3 normalized_fast(this ref Vector3 vec)
         {
             if (vec == Vector3.Zero)
             {
@@ -86,12 +86,12 @@ namespace __ENGINE__.Shared
             return vec;
         }
         
-        public static float toRadians(this float degrees)
+        public static float to_radians(this float degrees)
         {
             return (float) (degrees * Math.PI / 180.0);
         }
         
-        public static float toDegrees(this float radians)
+        public static float to_degrees(this float radians)
         {
             return (float) (radians * 180 / Math.PI);
         }
@@ -151,7 +151,7 @@ namespace __ENGINE__.Shared
             mat.M44 = other.M44;
         }
 
-        public static int distanceSq(this Vector2i vec, Vector2i other)
+        public static int distance_sq(this Vector2i vec, Vector2i other)
         {
             var (x, y) = vec;
             var (i, i1) = other;

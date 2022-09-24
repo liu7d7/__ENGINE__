@@ -19,19 +19,19 @@ namespace __ENGINE__.Engine
 
             GL.ShaderSource(vertexShader, shaderSource);
 
-            compileShader(vertexShader);
+            compile_shader(vertexShader);
 
             shaderSource = File.ReadAllText(fragPath);
             var fragmentShader = GL.CreateShader(ShaderType.FragmentShader);
             GL.ShaderSource(fragmentShader, shaderSource);
-            compileShader(fragmentShader);
+            compile_shader(fragmentShader);
             
             _handle = GL.CreateProgram();
 
             GL.AttachShader(_handle, vertexShader);
             GL.AttachShader(_handle, fragmentShader);
 
-            linkProgram(_handle);
+            link_program(_handle);
             
             GL.DetachShader(_handle, vertexShader);
             GL.DetachShader(_handle, fragmentShader);
@@ -50,7 +50,7 @@ namespace __ENGINE__.Engine
             }
         }
 
-        private static void compileShader(int shader)
+        private static void compile_shader(int shader)
         {
             GL.CompileShader(shader);
 
@@ -60,7 +60,7 @@ namespace __ENGINE__.Engine
             throw new Exception($"Error occurred whilst compiling Shader({shader}).\n\n{infoLog}");
         }
 
-        private static void linkProgram(int program)
+        private static void link_program(int program)
         {
             GL.LinkProgram(program);
 
@@ -86,7 +86,7 @@ namespace __ENGINE__.Engine
             _active = 0;
         }
         
-        public int getAttribLocation(string attribName)
+        public int get_attrib_location(string attribName)
         {
             return GL.GetAttribLocation(_handle, attribName);
         }
@@ -96,7 +96,7 @@ namespace __ENGINE__.Engine
         /// </summary>
         /// <param name="name">The name of the uniform</param>
         /// <param name="data">The data to set</param>
-        public void setInt(string name, int data)
+        public void set_int(string name, int data)
         {
             if (!_uniformLocations.ContainsKey(name))
             {
@@ -111,7 +111,7 @@ namespace __ENGINE__.Engine
         /// </summary>
         /// <param name="name">The name of the uniform</param>
         /// <param name="data">The data to set</param>
-        public void setFloat(string name, float data)
+        public void set_float(string name, float data)
         {
             if (!_uniformLocations.ContainsKey(name))
             {
@@ -131,7 +131,7 @@ namespace __ENGINE__.Engine
         ///   The matrix is transposed before being sent to the shader.
         ///   </para>
         /// </remarks>
-        public void setMatrix4(string name, Matrix4 data)
+        public void set_matrix4(string name, Matrix4 data)
         {
             if (!_uniformLocations.ContainsKey(name))
             {
@@ -146,7 +146,7 @@ namespace __ENGINE__.Engine
         /// </summary>
         /// <param name="name">The name of the uniform</param>
         /// <param name="data">The data to set</param>
-        public void setVector3(string name, Vector3 data)
+        public void set_vector3(string name, Vector3 data)
         {
             if (!_uniformLocations.ContainsKey(name))
             {
@@ -161,7 +161,7 @@ namespace __ENGINE__.Engine
         /// </summary>
         /// <param name="name">The name of the uniform</param>
         /// <param name="data">The data to set</param>
-        public void setVector2(string name, Vector2 data)
+        public void set_vector2(string name, Vector2 data)
         {
             if (!_uniformLocations.ContainsKey(name))
             {

@@ -1,6 +1,6 @@
 ﻿namespace __ENGINE__.Shared.Components
 {
-    public class Tag : EngineObj.Component
+    public class Tag : __ENGINE__Obj.Component
     {
         public int id;
         public string name;

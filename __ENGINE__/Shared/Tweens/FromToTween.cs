@@ -32,7 +32,7 @@ namespace __ENGINE__.Shared.Tweens
             return MathHelper.Lerp(from, to, animation(duration, Environment.TickCount - lastActivation));
         }
 
-        public override float outputAt(float time)
+        public override float output_at(float time)
         {
             if (time < lastActivation)
             {

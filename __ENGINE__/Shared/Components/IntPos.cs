@@ -2,7 +2,7 @@
 
 namespace __ENGINE__.Shared.Components
 {
-    public class IntPos : EngineObj.Component
+    public class IntPos : __ENGINE__Obj.Component
     {
         public int x;
         public int y;
